@@ -1,9 +1,31 @@
 # -*- coding:utf-8 -*-
+
+def ConvertBinaryTreeToList(list, node):
+    """
+    前序打印
+    :param node:
+    :return:
+    """
+    if not root:
+        return
+
+    list.append(str(node.val))
+    if not not node.left:
+        ConvertBinaryTreeToList(list, node.left)
+    if not not node.right:
+        ConvertBinaryTreeToList(list, node.right)
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
+    def __str__(self):
+        list=[]
+        ConvertBinaryTreeToList(list, self)
+        return ' '.join(list)
 
 
 class Solution:
@@ -33,30 +55,10 @@ class Solution:
             node.right = TreeNode(tin_right[0])
 
 
-res = []
-
-
-def ConvertBinaryTreeToList(node):
-    """
-    前序打印
-    :param node:
-    :return:
-    """
-    if not root:
-        return
-
-    global res
-    res.append(str(node.val))
-    if not not node.left:
-        ConvertBinaryTreeToList(node.left)
-    if not not node.right:
-        ConvertBinaryTreeToList(node.right)
-
-    return res
 
 
 if __name__ == '__main__':
     pre, tin = [1, 2, 3, 4, 5, 6, 7], [3, 2, 4, 1, 6, 5, 7]
     solution = Solution()
     root = solution.reConstructBinaryTree(pre, tin)
-    print(' '.join(ConvertBinaryTreeToList(root)))
+    print(root)
